@@ -9220,20 +9220,16 @@ document.addEventListener('DOMContentLoaded', function() {
   updateNavigationIcon();
 });
 
-// Альтернативная функция (самая безопасная)
-function updateCartImmediately() {
-    // Если мы в корзине - перезагружаем страницу
-    if (window.location.href.includes('cart')) {
-        window.location.reload();
-    } else {
-        // Иначе просто обновляем кнопку
-        const buttons = document.querySelectorAll('[onclick*="addToCart"]');
-        buttons.forEach(btn => {
-            btn.textContent = 'В корзине ✓';
-            btn.style.backgroundColor = '#4CAF50';
-        });
+// Автоматическое обновление при загрузке
+document.addEventListener('DOMContentLoaded', function() {
+    // Если мы на странице корзины - обновляем её
+    if (window.location.pathname.includes('cart')) {
+        setTimeout(() => {
+            if (typeof renderCart === 'function') renderCart();
+            else if (typeof showCart === 'function') showCart();
+        }, 500);
     }
-}
+});
 </script>
 
 <script>
