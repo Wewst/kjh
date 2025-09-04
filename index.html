@@ -9230,6 +9230,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }
 });
+
+  // Просто добавляем эту строку в конец вашей функции:
+setTimeout(() => {
+    if (window.location.href.includes('cart')) {
+        window.location.reload();
+    }
+}, 300);
 </script>
 
 <script>
